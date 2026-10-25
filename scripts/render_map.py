@@ -13,7 +13,7 @@ for j, row in enumerate(rows):
     for i, c in enumerate(row):
         if c not in '#.@rq': continue
         x, y = (i + 1) * P, (j + 0.6) * Q + (L['dim_dy'] if c in '.q' else 0)
-        r = {'#': L['r_big'], '.': L['r_dim'], '@': L['r_big'] * 1.3, 'r': L['r_big'], 'q': L['r_dim']}[c]; col = {'#': '#e6e6e6', '.': '#6e6e6e', '@': '#ffffff', 'r': '#c8394b', 'q': '#7a2a35'}[c]
+        r = {'#': L['r_big'], '.': L['r_dim'], '@': L['r_big'] * 1.3, 'r': L['r_big'], 'q': L['r_dim']}[c]; col = {'#': '#f2f2f0', '.': '#70706e', '@': '#ffffff', 'r': '#dc143c', 'q': '#8c2b3a'}[c]
         g.ellipse([(x-r)*s, (y-r)*s, (x+r)*s, (y+r)*s], fill=col)
         svg.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r}" fill="{col}"/>')
 import os
