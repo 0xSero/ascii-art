@@ -1,6 +1,6 @@
 # Case study: the skull bust (October 2026)
 
-One piece taken through every stage. Files are in `assets/examples/`.
+One piece taken through every stage. Files are in `examples/` (the reference photographs and rendered frames are not shipped).
 
 **Source:** a sculpture photo, half human face and half exposed skull, pale stone
 on black (`bust-skull.source.png`).

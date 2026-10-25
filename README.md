@@ -40,7 +40,7 @@ python scripts/build_scene.py examples/scenes/bust-dust.scene.json out.html
 
 # 4. frames, then encode
 python scripts/grab_frames.py out.html frames 30 12      # fps, seconds
-ffmpeg -framerate 30 -i frames/%04d.png -c:v libx264 -crf 16 -pix_fmt yuv420p \
+ffmpeg -framerate 30 -i frames/f%04d.png -c:v libx264 -crf 16 -pix_fmt yuv420p \
        -movflags +faststart piece.mp4
 ```
 
