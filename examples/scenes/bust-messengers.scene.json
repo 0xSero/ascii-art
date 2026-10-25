@@ -1,0 +1,13 @@
+{
+  "title": "Bust Messengers", "size": [1920, 1080], "loop": 8, "intro": 4, "seed": 11,
+  "figure": { "map": "../bust-skull.map.txt", "scale": 0.56, "cx": 1270, "centerCol": 49, "dy": -4 },
+  "wind": { "dir": [-1, -0.32], "turb": 0.9 },
+  "layers": [
+    { "type": "specks", "count": 90 },
+    { "type": "figure" },
+    { "type": "dust", "region": [18, 48, 7, 40], "red": 0.035 },
+    { "type": "stipple", "image": "../messengers.source.png", "crop": [135, 15, 405, 205],
+      "isolate": { "lum": [0.38, 0.63], "notBlue": true, "zero": [[252, 0, 275, 22]] },
+      "height": 380, "pitch": 4.0, "at": [19.3, 16], "from": [17, 42, 7, 38], "breakFigure": true, "births": 260, "shed": 0.05 }
+  ]
+}

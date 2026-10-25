@@ -1,0 +1,10 @@
+{
+  "title": "Bust Dust", "size": [1920, 1080], "loop": 8, "seed": 11,
+  "figure": { "map": "../bust-skull.map.txt", "scale": 0.56, "cx": 1270, "centerCol": 49, "dy": -4 },
+  "wind": { "dir": [-1, -0.32], "turb": 0.9 },
+  "layers": [
+    { "type": "specks", "count": 90 },
+    { "type": "figure" },
+    { "type": "dust", "region": [18, 48, 7, 40], "red": 0.035 }
+  ]
+}

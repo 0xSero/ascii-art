@@ -1,0 +1,176 @@
+{
+  "title": "Bust Tentacles",
+  "size": [
+    1920,
+    1080
+  ],
+  "loop": 8,
+  "intro": 4,
+  "seed": 7,
+  "figure": {
+    "map": "../bust-skull.map.txt",
+    "scale": 0.56,
+    "cx": 1300,
+    "centerCol": 49,
+    "dy": -4
+  },
+  "wind": {
+    "dir": [
+      -1,
+      -0.32
+    ],
+    "turb": 0.9
+  },
+  "layers": [
+    {
+      "type": "specks",
+      "count": 120
+    },
+    {
+      "type": "hole",
+      "region": {
+        "center": [
+          30.5,
+          21.5
+        ],
+        "radius": [
+          5,
+          2.2
+        ]
+      },
+      "ragged": 0.2,
+      "at": [
+        0.2,
+        1.6
+      ]
+    },
+    {
+      "type": "void",
+      "center": [
+        30.5,
+        21.5
+      ],
+      "radius": 56,
+      "count": 520,
+      "spiral": 1.6,
+      "at": [
+        0.4,
+        2.4
+      ],
+      "aspect": 1.9
+    },
+    {
+      "type": "figure"
+    },
+    {
+      "type": "dust",
+      "region": [
+        18,
+        48,
+        7,
+        40
+      ],
+      "density": 0.3,
+      "red": 0.035
+    },
+    {
+      "type": "tentacles",
+      "root": {
+        "center": [
+          24,
+          18
+        ],
+        "radius": [
+          5,
+          9
+        ]
+      },
+      "pitch": 3.0,
+      "writhe": 0.55,
+      "light": 225,
+      "suckers": true,
+      "grow": [
+        0.8,
+        2.4
+      ],
+      "shed": 6,
+      "red": 0.04,
+      "latticeRoot": [
+        0.9,
+        1.0
+      ],
+      "tones": 2,
+      "latticeSplit": 0.5,
+      "coil": 0.4,
+      "curlPow": 2.6,
+      "highlight": 0.78,
+      "items": [
+        {
+          "root": [
+            22,
+            30
+          ],
+          "angle": 126,
+          "length": 460,
+          "width": 84,
+          "curl": -2.6
+        },
+        {
+          "root": [
+            19,
+            22
+          ],
+          "angle": 158,
+          "length": 560,
+          "width": 92,
+          "curl": 3.8
+        },
+        {
+          "root": [
+            19,
+            15
+          ],
+          "angle": 184,
+          "length": 700,
+          "width": 104,
+          "curl": -3.8
+        },
+        {
+          "root": [
+            21,
+            10
+          ],
+          "angle": 204,
+          "length": 480,
+          "width": 84,
+          "curl": -2.8
+        },
+        {
+          "root": [
+            27,
+            9
+          ],
+          "angle": 228,
+          "length": 240,
+          "width": 62,
+          "curl": 3.8
+        },
+        {
+          "root": [
+            28,
+            21
+          ],
+          "angle": 172,
+          "length": 230,
+          "width": 40,
+          "curl": 5.0
+        }
+      ],
+      "body": 0.22
+    }
+  ],
+  "colors": {
+    "bright": "#f7f7f5",
+    "highlight": "#ffffff"
+  }
+}
