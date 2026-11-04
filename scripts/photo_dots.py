@@ -9,6 +9,25 @@ import json, os, sys, numpy as np
 from PIL import Image, ImageFilter
 L = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'assets', 'lattice.json'))); P, Q = L['px'], L['py']
 src, out, rows = sys.argv[1], sys.argv[2], int(sys.argv[3])
+
+if src.lower().endswith('.svg'):                # rasterize SVG via playwright (already a dependency); Pillow can't read SVG
+    from playwright.sync_api import sync_playwright
+    svg = open(src).read()
+    page = f'<!doctype html><html><head><style>html,body{{margin:0;background:#111;overflow:hidden}}svg{{display:block}}</style></head><body>{svg}</body></html>'
+    pp = os.path.join(os.path.dirname(os.path.abspath(out)), f'.{os.path.basename(out)}.svg.html')
+    open(pp, 'w').write(page)
+    with sync_playwright() as pw:
+        b = pw.chromium.launch(headless=True); pg = b.new_page(viewport={'width': 2048, 'height': 2048})
+        pg.goto(f'file://{os.path.abspath(pp)}'); pg.wait_for_timeout(300)
+        pg.locator('svg').screenshot(path=src + '.png'); b.close()
+    os.remove(pp)
+    a = np.asarray(Image.open(src + '.png').convert('L'))
+    ys, xs = np.where(a > 40)
+    if len(xs) == 0: sys.exit(f'error: no ink found in {src} (is the SVG empty or fully transparent?)')
+    Image.open(src + '.png').convert('RGB').crop((xs.min(), ys.min(), xs.max() + 1, ys.max() + 1)).save(src + '.png')
+    print('rasterized', src, '->', src + '.png', f'({xs.max()-xs.min()+1}x{ys.max()-ys.min()+1} px, cropped to ink)')
+    src = src + '.png'
+
 rgb = np.asarray(Image.open(src).convert('RGB')).astype(float) / 255
 if os.environ.get('ISO'):                       # ISO="lo,hi[,notblue][,invert]": isolate the subject from its background
     o = os.environ['ISO'].split(','); lo, hi = float(o[0]), float(o[1]); lum = rgb.mean(2)
