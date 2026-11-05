@@ -37,6 +37,24 @@ def stipple(o, base, seed):
 
 scene_path, out = sys.argv[1], sys.argv[2]
 sc = json.load(open(scene_path)); base = os.path.dirname(os.path.abspath(scene_path))
+
+def die(msg):
+    print(f'error: {msg}', file=sys.stderr); sys.exit(1)
+
+# Validate the scene before touching the filesystem so a malformed file fails
+# with the missing keys named instead of a raw KeyError traceback.
+if not isinstance(sc, dict): die('scene JSON must be an object')
+fig = sc.get('figure')
+if not isinstance(fig, dict):
+    die(f"missing or invalid 'figure' object (got {type(fig).__name__}) — a scene needs at least a figure, e.g. {{\"figure\": {{\"map\": \"subject.map.txt\", \"scale\": 0.56, \"cx\": 960, \"centerCol\": 40}}}}")
+for key in ('map',):
+    if not fig.get(key): die(f"figure.{key} is required (path to the dot map, relative to the scene file)")
+if not isinstance(sc.get('layers'), list) or not sc['layers']:
+    die("'layers' must be a non-empty list — add at least {\"type\": \"figure\"} to draw the dot map")
+for n, l in enumerate(sc['layers']):
+    if not isinstance(l, dict) or not l.get('type'):
+        die(f'layers[{n}] must be an object with a \"type\" (specks, figure, dust, hole, void, tentacles, stipple, stream, sigil, embers)')
+
 sc['figure']['map'] = open(os.path.join(base, sc['figure']['map'])).read().rstrip('\n')
 if isinstance(sc['figure'].get('tints'), str): sc['figure']['tints'] = json.load(open(os.path.join(base, sc['figure']['tints'])))
 sc['lattice'] = json.load(open(os.path.join(ASSETS, 'lattice.json')))
