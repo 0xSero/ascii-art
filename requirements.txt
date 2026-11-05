@@ -1,0 +1,9 @@
+# ascii-art skill — Python dependencies (see README "Requirements")
+# Install with: pip install -r requirements.txt
+# Then fetch the headless chromium build playwright drives:
+#   python -m playwright install chromium
+numpy
+scipy
+Pillow
+scikit-image
+playwright

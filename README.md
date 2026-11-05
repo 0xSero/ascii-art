@@ -22,7 +22,7 @@ source image ──photo_dots/mask──► dot map (text) ──render_map─�
 - `ffmpeg` for encoding
 
 ```
-pip install numpy scipy pillow scikit-image playwright
+pip install -r requirements.txt
 python -m playwright install chromium
 ```
 
